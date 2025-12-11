@@ -1,0 +1,111 @@
+{
+  "version": "1.0",
+  "updated_at": "2025-12-11T00:00:00Z",
+  "workflow": {
+    "nodes": [
+      {
+        "id": "input",
+        "type": "input",
+        "label": "User Input",
+        "nodeCategory": "input",
+        "description": "User problem statement and preferences",
+        "position": { "x": 100, "y": 300 }
+      },
+      {
+        "id": "coordinator",
+        "type": "agent",
+        "label": "Credit Calculator Coordinator",
+        "nodeCategory": "agent",
+        "description": "Manager agent orchestrating architecture and cost calculation",
+        "position": { "x": 500, "y": 300 }
+      },
+      {
+        "id": "architect",
+        "type": "agent",
+        "label": "Architecture Designer Agent",
+        "nodeCategory": "agent",
+        "description": "Analyzes problem and generates agent architecture",
+        "position": { "x": 900, "y": 150 }
+      },
+      {
+        "id": "estimator",
+        "type": "agent",
+        "label": "Cost Estimator Agent",
+        "nodeCategory": "agent",
+        "description": "Calculates project costs based on architecture",
+        "position": { "x": 900, "y": 450 }
+      },
+      {
+        "id": "output",
+        "type": "end",
+        "label": "Results",
+        "nodeCategory": "end",
+        "description": "Architecture blueprint and cost breakdown",
+        "position": { "x": 500, "y": 600 }
+      }
+    ],
+    "edges": [
+      { "source": "input", "target": "coordinator", "label": "Problem statement" },
+      { "source": "coordinator", "target": "architect", "label": "Route to architecture" },
+      { "source": "coordinator", "target": "estimator", "label": "Route to cost estimation" },
+      { "source": "coordinator", "target": "output", "label": "Aggregate results" }
+    ]
+  },
+  "agents": [
+    {
+      "agent_id": "693a5b99bc73a1ed4a58e89d",
+      "node_id": "coordinator",
+      "name": "Credit Calculator Coordinator",
+      "description": "Orchestrates the architecture generation and cost estimation workflow, aggregates final output with architecture blueprint and cost breakdown",
+      "agent_role": "Workflow Coordinator",
+      "agent_goal": "Receive user problem statement and coordinate between Architecture Designer and Cost Estimator agents to deliver complete solution cost estimation",
+      "provider_id": "OpenAI",
+      "model": "gpt-4o-mini",
+      "temperature": 0.3,
+      "top_p": 1,
+      "features": ["manager"],
+      "has_knowledge_base": false,
+      "rag_id": null,
+      "rag_name": null,
+      "position": { "x": 500, "y": 300 },
+      "created_at": "2025-12-11T00:00:00Z"
+    },
+    {
+      "agent_id": "693a5b86829cb256a64c42d6",
+      "node_id": "architect",
+      "name": "Architecture Designer Agent",
+      "description": "Analyzes user problem statements to design optimal Lyzr agent architectures with complete component specifications",
+      "agent_role": "Solution Architect",
+      "agent_goal": "Analyze application requirements and generate detailed agent architecture with component count, pattern recommendations, and technology stack",
+      "provider_id": "OpenAI",
+      "model": "gpt-4o-mini",
+      "temperature": 0.4,
+      "top_p": 1,
+      "features": [],
+      "has_knowledge_base": false,
+      "rag_id": null,
+      "rag_name": null,
+      "position": { "x": 900, "y": 150 },
+      "created_at": "2025-12-11T00:00:00Z"
+    },
+    {
+      "agent_id": "693a5b868188764231c37ee5",
+      "node_id": "estimator",
+      "name": "Cost Estimator Agent",
+      "description": "Applies Lyzr pricing matrix to architecture specifications and generates detailed cost breakdowns",
+      "agent_role": "Cost Analysis Specialist",
+      "agent_goal": "Receive architecture specification and calculate itemized project costs with model-specific pricing and monthly projections",
+      "provider_id": "OpenAI",
+      "model": "gpt-4o-mini",
+      "temperature": 0.2,
+      "top_p": 1,
+      "features": [],
+      "has_knowledge_base": false,
+      "rag_id": null,
+      "rag_name": null,
+      "position": { "x": 900, "y": 450 },
+      "created_at": "2025-12-11T00:00:00Z"
+    }
+  ],
+  "knowledge_bases": []
+}
